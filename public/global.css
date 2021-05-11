@@ -1,0 +1,82 @@
+html {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  font-size: 14px;
+  font-family: Calibri;
+  text-align: justify;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  background: #c0c0c0;
+}
+
+@media print {
+  body {
+    margin: 0;
+    box-shadow: 0;
+  }
+}
+
+h2 {
+  margin: 0;
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+a {
+  font-style: italic;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+a:visited,
+a:active,
+a:link {
+  color: #c0c0c0;
+}
+
+a:hover {
+  color: #606060;
+}
+
+em {
+  color: #808080;
+  font-weight: bold;
+}
+
+i {
+  font-size: 20px;
+  color: #fff;
+  place-self: center;
+  cursor: pointer;
+  text-shadow: 0 0 5px #fff;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+img {
+  cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #808080;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #404040;
+}
