@@ -12,7 +12,7 @@ A modern template for CV created with svelte.
 
 ## SAMPLE OUTPUT
 
-![CV](/public/images/sample.jpg)
+![CV](/images/sample.jpg)
 
 ## PREREQUISITES (OPTIONAL)
 
@@ -29,7 +29,16 @@ Visit the <a class="link-gray-dark"  href="https://psi-chi.github.io/modern-cv-t
 
 ### BASIC EDITING
 
-Basic editing can be done by using the <a href="https://psi-chi.github.io/modern-cv-template/">website</a> interface. Hoverever, to edit the icons, visit <a href="https://psi-chi.github.io/modern-cv-template/">Font Awesome</a> > search for an icon > copy the class of i tag > go back to the <a href="https://psi-chi.github.io/modern-cv-template/">website</a> > click the icon > paste the class below the respective icon.
+Basic editing can be done by using the <a href="https://psi-chi.github.io/modern-cv-template/">website</a> interface.
+<br />
+<br />:white_square_button: **ADDING IMAGES:** Click the image > Upload the file (png, jpg or jpeg).
+<br />
+<br />:white_square_button: **EDITING ICONS:** Visit <a href="https://psi-chi.github.io/modern-cv-template/">Font Awesome</a> > Search for an icon > Copy the class of i tag > Go back to the <a href="https://psi-chi.github.io/modern-cv-template/">website</a> > Click the icon > Paste the class in the input field > Click the icon again.
+<br />
+<br />:white_square_button: **EDITING HYPERLINKS:** Click the underlined text > Paste the url in the input field > Click the underlined text again.
+<br />
+
+> **Trick:** To edit even the non-editable icons, keep clicking the "-" button till you remove all components and then click the "+" button again. This will generate new components of editable icons.
 
 ### ADVANCED EDITING
 
