@@ -21,10 +21,4 @@
   .about-me {
     width: 175px;
   }
-
-  ::selection {
-    color: #000;
-    background: #fff;
-    text-shadow: 0 0 3px #000;
-  }
 </style>

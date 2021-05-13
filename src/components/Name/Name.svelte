@@ -22,10 +22,4 @@
   .designation {
     font-size: 20px;
   }
-
-  ::selection {
-    color: #fff;
-    background: #000;
-    text-shadow: 0 0 3px #fff;
-  }
 </style>

@@ -1,42 +1,68 @@
 <script>
   import LineX from "../Lines/LineX/LineXL.svelte";
+  import Component from "../Others/Component4.svelte";
 
-  let none = "none",
-    social1 = "fab fa-linkedin",
-    social2 = "fab fa-github",
-    social3 = "fab fa-twitter";
+  let bool = true,
+    statei1 = "-square",
+    statei2 = "-square",
+    array = [
+      { component: Component, display: "LinkedIn" },
+      { component: Component, display: "GitHub" },
+    ];
+
+  const setState = (num, state) => {
+    if (state == "enter") {
+      bool = !bool;
+      if (num == 1) {
+        statei1 = "";
+      } else {
+        statei2 = "";
+      }
+    } else {
+      bool = !bool;
+      if (num == 1) {
+        statei1 = "-square";
+      } else {
+        statei2 = "-square";
+      }
+    }
+  };
+
+  const addElement = () => {
+    array = [...array, { component: Component, display: "Stack Overflow" }];
+  };
+
+  const removeElement = () => {
+    array = array.slice(0, -1);
+  };
 </script>
 
-<div contenteditable="true" class="social">
-  <h2>SOCIAL MEDIA</h2>
+<div contenteditable={bool} class="social">
+  <h2>
+    SOCIAL <i
+      class="fas fa-plus{statei1}"
+      on:mouseenter={() => setState(1, "enter")}
+      on:mouseleave={() => setState(1, "leave")}
+      on:click={addElement}
+    />
+    <i
+      class="fas fa-minus{statei2}"
+      on:mouseenter={() => setState(2, "enter")}
+      on:mouseleave={() => setState(2, "leave")}
+      on:click={removeElement}
+    />
+  </h2>
   <LineX />
-  <div class="social-details">
-    <i
-      class={social1}
-      on:click={() => (none == "none" ? (none = "inherit") : (none = "none"))}
-    />
-    <p>LinkedIn</p>
-    <a href="https://www.linkedin.com/in/#" target="_blank">lorem</a>
+  <div class="container">
+    {#each array as item}
+      <svelte:component
+        this={item.component}
+        display={item.display}
+        type="social"
+        title=""
+      />
+    {/each}
   </div>
-  <input style="display: {none}" type="text" bind:value={social1} />
-  <div class="social-details">
-    <i
-      class={social2}
-      on:click={() => (none == "none" ? (none = "inherit") : (none = "none"))}
-    />
-    <p>GitHub</p>
-    <a href="https://github.com/#" target="_blank">lorem</a>
-  </div>
-  <input style="display: {none}" type="text" bind:value={social2} />
-  <div class="social-details">
-    <i
-      class={social3}
-      on:click={() => (none == "none" ? (none = "inherit") : (none = "none"))}
-    />
-    <p>Twitter</p>
-    <a href="https://twitter.com/#" target="_blank">lorem</a>
-  </div>
-  <input style="display: {none}" type="text" bind:value={social3} />
 </div>
 
 <style>
@@ -49,50 +75,13 @@
     margin: 0;
   }
 
-  p {
-    color: #fff;
-    grid-row: 1;
-    margin: 0;
-  }
-
-  a {
-    cursor: pointer;
-    grid-row: 2;
-    grid-column: 2;
-    margin: 0;
-  }
-
-  input {
-    margin: 5px 5px 5px 5px;
-    padding: 3px 3px 3px 3px;
-    color: #000;
-    background: #fff;
-    border: 1px solid #000;
-    text-shadow: 0 0 3px #000;
-    box-shadow: 0 0 3px #000;
-    border-radius: 5px;
-    caret-color: #000;
-  }
-
-  input::selection {
-    color: #fff;
-    background: #000;
-    text-shadow: 0 0 3px #fff;
-  }
-
   .social {
     width: 175px;
   }
 
-  .social-details {
-    display: grid;
-    grid-template-columns: 40px auto;
-    margin-top: 20px;
-  }
-
-  ::selection {
-    color: #000;
-    background: #fff;
-    text-shadow: 0 0 3px #000;
+  @media print {
+    .fas {
+      display: none;
+    }
   }
 </style>

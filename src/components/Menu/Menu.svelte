@@ -54,7 +54,7 @@
 </script>
 
 <div class="menu">
-  <div class="togglers">
+  <div class="heading">
     <h2>TOGGLE</h2>
     <div class="toggler">
       <span class="avatar" on:click={() => setState("avatar")}>
@@ -152,7 +152,7 @@
     </div>
   </div>
 
-  <div class="togglers">
+  <div class="heading">
     <h2>OTHERS</h2>
     <div class="toggler">
       <span class="skillsl" on:click={() => setState("skillsl")}>
@@ -185,13 +185,10 @@
   }
 
   .menu {
-    height: 1086px;
     width: 175px;
-    float: left;
     display: grid;
-    margin: 8px 8px 8px 0;
-    padding: 0 20px 0 20px;
-    grid-row-gap: 35px;
+    padding: 20px;
+    grid-row-gap: 50px;
 
     text-transform: uppercase;
     font-size: 14px;
@@ -201,8 +198,7 @@
     border-radius: 10px;
   }
 
-  .togglers {
-    padding: 20px 0 20px 0;
+  .heading {
     width: 160px;
   }
 
@@ -212,6 +208,7 @@
     font-weight: bold;
     letter-spacing: 1px;
     padding: 10px 0 0 10px;
+    align-items: center;
   }
 
   .toggler > span > i {
@@ -224,18 +221,11 @@
 
   .toggler > p {
     margin: 0 0 0 5px;
-    text-align: left;
   }
 
   @media print {
     .menu {
       display: none;
     }
-  }
-
-  ::selection {
-    color: #000000;
-    background: #ffffff;
-    text-shadow: 0 0 3px #000000;
   }
 </style>

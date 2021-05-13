@@ -1,89 +1,85 @@
 <script>
   import LineX from "../Lines/LineX/LineXL.svelte";
+  import Component from "../Others/Component4.svelte";
 
-  let none = "none",
-    interest1 = "fas fa-question",
-    interest2 = "fas fa-question",
-    interest3 = "fas fa-question";
+  let bool = true,
+    statei1 = "-square",
+    statei2 = "-square",
+    array = [Component, Component, Component];
+
+  const setState = (num, state) => {
+    if (state == "enter") {
+      bool = !bool;
+      if (num == 1) {
+        statei1 = "";
+      } else {
+        statei2 = "";
+      }
+    } else {
+      bool = !bool;
+      if (num == 1) {
+        statei1 = "-square";
+      } else {
+        statei2 = "-square";
+      }
+    }
+  };
+
+  const addElement = () => {
+    array = [...array, Component];
+  };
+
+  const removeElement = () => {
+    array = array.slice(0, -1);
+  };
 </script>
 
-<div contenteditable="true" class="interests">
-  <h2>INTERESTS</h2>
+<div contenteditable={bool} class="interests">
+  <h2>
+    INTERESTS <i
+      class="fas fa-plus{statei1}"
+      on:mouseenter={() => setState(1, "enter")}
+      on:mouseleave={() => setState(1, "leave")}
+      on:click={addElement}
+    />
+    <i
+      class="fas fa-minus{statei2}"
+      on:mouseenter={() => setState(2, "enter")}
+      on:mouseleave={() => setState(2, "leave")}
+      on:click={removeElement}
+    />
+  </h2>
   <LineX />
   <div class="interest">
-    <i
-      class={interest1}
-      on:click={() => (none == "none" ? (none = "inherit") : (none = "none"))}
-    />
-    <p>LOREM</p>
+    {#each array as item}
+      <svelte:component
+        this={item}
+        display="fas fa-question"
+        type=""
+        title=""
+      />
+    {/each}
   </div>
-  <input style="display: {none}" type="text" bind:value={interest1} />
-  <div class="interest">
-    <i
-      class={interest2}
-      on:click={() => (none == "none" ? (none = "inherit") : (none = "none"))}
-    />
-    <p>IPSUM</p>
-  </div>
-  <input style="display: {none}" type="text" bind:value={interest2} />
-  <div class="interest">
-    <i
-      class={interest3}
-      on:click={() => (none == "none" ? (none = "inherit") : (none = "none"))}
-    />
-    <p>LOREM</p>
-  </div>
-  <input style="display: {none}" type="text" bind:value={interest3} />
 </div>
 
 <style>
-  i {
-    grid-row: 1;
-  }
-
-  p {
-    margin: 0;
-    grid-row: 1;
-  }
-
   h2 {
     text-shadow: 0 0 5px #000;
   }
 
-  input {
-    margin: 5px 5px 5px 5px;
-    padding: 3px 3px 3px 3px;
-    color: #000;
-    background: #fff;
-    border: 1px solid #000;
-    text-shadow: 0 0 3px #000;
-    box-shadow: 0 0 3px #000;
-    border-radius: 5px;
-    caret-color: #000;
-  }
-
-  input::selection {
-    color: #fff;
-    background: #000;
-    text-shadow: 0 0 3px #fff;
+  i {
+    grid-row: 1 / 3;
+    margin: 0;
   }
 
   .interests {
-    width: 175px;
-    caret-color: #fff;
     text-transform: uppercase;
+    width: 175px;
   }
 
-  .interest {
-    display: grid;
-    grid-template-columns: 40px auto;
-    color: #fff;
-    margin-top: 20px;
-  }
-
-  ::selection {
-    color: #000;
-    background: #fff;
-    text-shadow: 0 0 3px #000;
+  @media print {
+    .fas {
+      display: none;
+    }
   }
 </style>

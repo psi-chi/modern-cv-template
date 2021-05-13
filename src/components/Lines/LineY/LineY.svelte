@@ -12,7 +12,6 @@
     grid-template-rows: 12px auto;
     border-top: 0px;
     border-bottom: 0px;
-    cursor: pointer;
     place-items: center;
   }
 
@@ -22,6 +21,7 @@
     width: 10px;
     background-color: #000;
     border-radius: 50%;
+    cursor: pointer;
   }
 
   .line {
@@ -30,5 +30,6 @@
     border-left: 1px solid #c0c0c0;
     background-color: #808080;
     border-right: 1px solid #c0c0c0;
+    cursor: pointer;
   }
 </style>
