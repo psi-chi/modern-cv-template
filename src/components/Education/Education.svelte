@@ -1,29 +1,68 @@
 <script>
   import LineX from "../Lines/LineX/LineXR.svelte";
-  import LineY from "../Lines/LineY/LineY.svelte";
+  import Component from "../Others/Component2.svelte";
+
+  let bool = true,
+    length = 0,
+    statei1 = "-square",
+    statei2 = "-square",
+    array = [Component];
+
+  const setState = (num, state) => {
+    if (state == "enter") {
+      bool = !bool;
+      if (num == 1) {
+        statei1 = "";
+      } else {
+        statei2 = "";
+      }
+    } else {
+      bool = !bool;
+      if (num == 1) {
+        statei1 = "-square";
+      } else {
+        statei2 = "-square";
+      }
+    }
+  };
+
+  const addElement = () => {
+    array = [...array, Component];
+    length++;
+  };
+
+  const removeElement = () => {
+    array = array.slice(0, -1);
+    length--;
+  };
 </script>
 
-<div contenteditable="true" class="education">
-  <h2>EDUCATION</h2>
+<div contenteditable={bool} class="education">
+  <h2>
+    EDUCATION <i
+      class="fas fa-plus{statei1}"
+      on:mouseenter={() => setState(1, "enter")}
+      on:mouseleave={() => setState(1, "leave")}
+      on:click={addElement}
+    />
+    <i
+      class="fas fa-minus{statei2}"
+      on:mouseenter={() => setState(2, "enter")}
+      on:mouseleave={() => setState(2, "leave")}
+      on:click={removeElement}
+    />
+  </h2>
   <LineX />
   <div class="container">
-    <div class="education-details">
-      <p>
-        Lorem Ipsum
-        <br /><em>20XX - 20XX</em>
-      </p>
-      <LineY />
-      <div class="details">
-        <p>
-          Lorem Ipsum
-          <br /><em> Lorem Ipsum</em>
-        </p>
-        <p style="font-size: 12px">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere iste
-          dicta mollitia vel ea, laboriosam quia accusantium recusandae!
-        </p>
+    {#each array as item, index}
+      <div class="education-details">
+        {#if length == index}
+          <svelte:component this={item} line="false" month="false" />
+        {:else}
+          <svelte:component this={item} month="false" />
+        {/if}
       </div>
-    </div>
+    {/each}
   </div>
 </div>
 
@@ -33,8 +72,9 @@
     text-shadow: 0 0 5px #aaa;
   }
 
-  p {
-    margin: 0;
+  i {
+    color: #000;
+    text-shadow: 0 0 5px #aaa;
   }
 
   .container {
@@ -47,9 +87,9 @@
     grid-template-columns: 150px 50px auto;
   }
 
-  ::selection {
-    color: #fff;
-    background: #000;
-    text-shadow: 0 0 3px #fff;
+  @media print {
+    .fas {
+      display: none;
+    }
   }
 </style>

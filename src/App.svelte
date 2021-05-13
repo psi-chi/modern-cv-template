@@ -36,24 +36,26 @@
 </script>
 
 <main>
-  <Menu
-    bind:avatar
-    bind:aboutme
-    bind:interests
-    bind:contact
-    bind:social
-    bind:name
-    bind:skillsr
-    bind:work
-    bind:education
-    bind:certifications
-    bind:projects
-    bind:achievements
-    bind:positions
-    bind:skillsl
-    bind:customl
-    bind:customr
-  />
+  <div class="menubar">
+    <Menu
+      bind:avatar
+      bind:aboutme
+      bind:interests
+      bind:contact
+      bind:social
+      bind:name
+      bind:skillsr
+      bind:work
+      bind:education
+      bind:certifications
+      bind:projects
+      bind:achievements
+      bind:positions
+      bind:skillsl
+      bind:customl
+      bind:customr
+    />
+  </div>
   <div class="main" size="A4">
     <div class="left">
       {#if avatar}
@@ -111,17 +113,24 @@
 </main>
 
 <style>
+  main {
+    display: grid;
+    grid-template-columns: 223px 21cm auto;
+  }
+  .menubar {
+    grid-row: 1;
+  }
   .main {
     display: grid;
-    float: left;
+    grid-column: 2;
     font-weight: bold;
     grid-template-columns: 251px auto;
     background: linear-gradient(#808080 0 0) 250px / 1px 100%,
-      linear-gradient(#ffffff 0 0) 251px / 100%,
+      linear-gradient(to bottom, #fff 0%, #f0f0f0 100%) 251px / 100%,
       linear-gradient(to bottom, #404040 0%, #202020 100%);
     background-repeat: no-repeat;
     margin: 0 auto;
-    margin-bottom: 0.5cm;
+    margin-bottom: 8px;
     box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
   }
 
@@ -133,18 +142,16 @@
   .left {
     color: #c0c0c0;
     text-shadow: 0 0 3px #000;
-    padding: 40px 35px 40px 40px;
+    padding: 30px 35px 30px 40px;
     display: grid;
-    grid-row-gap: 30px;
     caret-color: #fff;
     overflow-y: scroll;
   }
 
   .right {
     display: grid;
-    padding: 40px 35px 40px 40px;
+    padding: 40px 35px 30px 40px;
     grid-column: 2;
-    grid-row-gap: 30px;
     caret-color: #000;
     overflow-y: scroll;
   }
@@ -153,6 +160,7 @@
     .main {
       margin: 0;
       box-shadow: 0;
+      grid-column: 1;
     }
 
     .left {

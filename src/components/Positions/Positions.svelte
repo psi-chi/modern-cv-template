@@ -1,80 +1,64 @@
 <script>
   import LineX from "../Lines/LineX/LineXR.svelte";
+  import Component from "../Others/Component3.svelte";
 
-  let university1, university2, fileinput1, fileinput2;
+  let bool = true,
+    statei1 = "-square",
+    statei2 = "-square",
+    array = [Component];
 
-  const onFileSelected = (e) => {
-    let image = e.target.files[0];
-    let reader = new FileReader();
-    reader.readAsDataURL(image);
-    reader.onload = (e) => {
-      university1 = e.target.result;
-    };
+  const setState = (num, state) => {
+    if (state == "enter") {
+      bool = !bool;
+      if (num == 1) {
+        statei1 = "";
+      } else {
+        statei2 = "";
+      }
+    } else {
+      bool = !bool;
+      if (num == 1) {
+        statei1 = "-square";
+      } else {
+        statei2 = "-square";
+      }
+    }
   };
 
-  const onFileSelected2 = (e) => {
-    let image = e.target.files[0];
-    let reader = new FileReader();
-    reader.readAsDataURL(image);
-    reader.onload = (e) => {
-      university2 = e.target.result;
-    };
+  const addElement = () => {
+    array = [...array, Component];
+    length++;
+  };
+
+  const removeElement = () => {
+    array = array.slice(0, -1);
+    length--;
   };
 </script>
 
-<div contenteditable="true" class="positions">
-  <h2>POSITIONS OF RESPONSIBILITY</h2>
+<div contenteditable={bool} class="positions">
+  <h2>
+    POSITIONS OF RESPONSIBILITY <i
+      class="fas fa-plus{statei1}"
+      on:mouseenter={() => setState(1, "enter")}
+      on:mouseleave={() => setState(1, "leave")}
+      on:click={addElement}
+    />
+    <i
+      class="fas fa-minus{statei2}"
+      on:mouseenter={() => setState(2, "enter")}
+      on:mouseleave={() => setState(2, "leave")}
+      on:click={removeElement}
+    />
+  </h2>
   <LineX />
   <div class="container">
-    <div class="position">
-      {#if university1}
-        <img src={university1} alt="" />
-      {:else}
-        <img
-          alt=""
-          src="../images/university.jpg"
-          on:click={() => {
-            fileinput1.click();
-          }}
-        />
-      {/if}
-      <p>
-        Lorem Ipsum
-        <br /><em>Lorem Ipsum | Jan 20XX - Present</em>
-      </p>
-    </div>
-    <div class="position">
-      {#if university2}
-        <img src={university2} alt="" />
-      {:else}
-        <img
-          alt=""
-          src="../images/university.jpg"
-          on:click={() => {
-            fileinput2.click();
-          }}
-        />
-      {/if}
-      <p>
-        Lorem Ipsum
-        <br /><em>Lorem Ipsum | Jan 20XX - Present</em>
-      </p>
-    </div>
+    {#each array as item, index}
+      <div class="position">
+        <svelte:component this={item} />
+      </div>
+    {/each}
   </div>
-  <input
-    style="display:none"
-    type="file"
-    accept=".jpg, .jpeg, .png"
-    on:change={(e) => onFileSelected(e)}
-    bind:this={fileinput1}
-  />
-  <input
-    style="display:none"
-    type="file"
-    accept=".jpg, .jpeg, .png"
-    on:change={(e) => onFileSelected2(e)}
-    bind:this={fileinput2}
-  />
 </div>
 
 <style>
@@ -83,16 +67,9 @@
     text-shadow: 0 0 5px #aaa;
   }
 
-  p {
-    margin: 0;
-  }
-
-  img {
-    height: 30px;
-    width: 30px;
-    padding: 5px;
-    border: 5px double #808080;
-    place-self: center;
+  i {
+    color: #000;
+    text-shadow: 0 0 5px #aaa;
   }
 
   .container {
@@ -101,20 +78,9 @@
     margin-top: 20px;
   }
 
-  .position {
-    display: grid;
-    grid-template-columns: 80px auto;
-  }
-
-  img::selection {
-    color: #000;
-    background: #fff;
-    text-shadow: 0 0 3px #000;
-  }
-
-  ::selection {
-    color: #fff;
-    background: #000;
-    text-shadow: 0 0 3px #fff;
+  @media print {
+    .fas {
+      display: none;
+    }
   }
 </style>

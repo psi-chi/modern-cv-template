@@ -1,42 +1,76 @@
 <script>
   import LineX from "../Lines/LineX/LineXL.svelte";
+  import Component from "../Others/Component4.svelte";
 
-  let none = "none",
-    contact1 = "fas fa-map-marker-alt",
-    contact2 = "fas fa-phone",
-    contact3 = "fas fa-envelope";
+  let bool = true,
+    statei1 = "-square",
+    statei2 = "-square",
+    array = [
+      {
+        component: Component,
+        display: "fas fa-map-marker-alt",
+        title: "Location",
+      },
+      { component: Component, display: "fas fa-phone", title: "Phone" },
+      { component: Component, display: "fas fa-envelope", title: "Email" },
+    ];
+
+  const setState = (num, state) => {
+    if (state == "enter") {
+      bool = !bool;
+      if (num == 1) {
+        statei1 = "";
+      } else {
+        statei2 = "";
+      }
+    } else {
+      bool = !bool;
+      if (num == 1) {
+        statei1 = "-square";
+      } else {
+        statei2 = "-square";
+      }
+    }
+  };
+
+  const addElement = () => {
+    array = [
+      ...array,
+      { component: Component, display: "fas fa-question", title: "Lorem" },
+    ];
+  };
+
+  const removeElement = () => {
+    array = array.slice(0, -1);
+  };
 </script>
 
 <div contenteditable="true" class="contact">
-  <h2>CONTACT</h2>
+  <h2>
+    CONTACT <i
+      class="fas fa-plus{statei1}"
+      on:mouseenter={() => setState(1, "enter")}
+      on:mouseleave={() => setState(1, "leave")}
+      on:click={addElement}
+    />
+    <i
+      class="fas fa-minus{statei2}"
+      on:mouseenter={() => setState(2, "enter")}
+      on:mouseleave={() => setState(2, "leave")}
+      on:click={removeElement}
+    />
+  </h2>
   <LineX />
   <div class="contact-details">
-    <i
-      class={contact1}
-      on:click={() => (none == "none" ? (none = "inherit") : (none = "none"))}
-    />
-    <p>Location</p>
-    <span>Lorem, Ipsum</span>
+    {#each array as item}
+      <svelte:component
+        this={item.component}
+        title={item.title}
+        display={item.display}
+        type="contact"
+      />
+    {/each}
   </div>
-  <input style="display: {none}" type="text" bind:value={contact1} />
-  <div class="contact-details">
-    <i
-      class={contact2}
-      on:click={() => (none == "none" ? (none = "inherit") : (none = "none"))}
-    />
-    <p>Phone</p>
-    <span>+XX XXX-XXXX-XXX</span>
-  </div>
-  <input style="display: {none}" type="text" bind:value={contact2} />
-  <div class="contact-details">
-    <i
-      class={contact3}
-      on:click={() => (none == "none" ? (none = "inherit") : (none = "none"))}
-    />
-    <p>Email</p>
-    <span>lorem@ipsum.com</span>
-  </div>
-  <input style="display: {none}" type="text" bind:value={contact3} />
 </div>
 
 <style>
@@ -49,49 +83,13 @@
     margin: 0;
   }
 
-  p {
-    color: #fff;
-    grid-row: 1;
-    margin: 0;
-  }
-
-  span {
-    grid-row: 2;
-    grid-column: 2;
-    margin: 0;
-  }
-
-  input {
-    margin: 5px 5px 5px 5px;
-    padding: 3px 3px 3px 3px;
-    color: #000;
-    background: #fff;
-    border: 1px solid #000;
-    text-shadow: 0 0 3px #000;
-    box-shadow: 0 0 3px #000;
-    border-radius: 5px;
-    caret-color: #000;
-  }
-
-  input::selection {
-    color: #fff;
-    background: #000;
-    text-shadow: 0 0 3px #fff;
-  }
-
   .contact {
     width: 175px;
   }
 
-  .contact-details {
-    display: grid;
-    grid-template-columns: 40px auto;
-    margin-top: 20px;
-  }
-
-  ::selection {
-    color: #000;
-    background: #fff;
-    text-shadow: 0 0 3px #000;
+  @media print {
+    .fas {
+      display: none;
+    }
   }
 </style>
