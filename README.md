@@ -46,7 +46,7 @@ One must have the basic knowledge of HTML, CSS, JavaScript & Svelte for advanced
 
 ## SAVING CV AS PDF
 
-1. Open the HTML document
+1. Open the <a href="https://psi-chi.github.io/modern-cv-template/">website</a>
 2. Press CTRL + P
 3. Change Destination to "Save as PDF"
 4. Under More Options:
