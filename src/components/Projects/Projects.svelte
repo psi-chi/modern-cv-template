@@ -59,7 +59,7 @@
 
 <style>
   h2 {
-    text-shadow: 0 0 3px #aaa;
+    text-shadow: 0 0 5px #fff;
   }
 
   i {

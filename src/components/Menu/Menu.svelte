@@ -173,7 +173,7 @@
     let colors = [temp.slice(0, 2), temp.slice(2, 4), temp.slice(4, 6)];
 
     leftHeading = color;
-    rightHeading = setColor(colors, 31);
+    rightHeading = setColor(colors, 15);
     avatarColor = color;
     leftProgressBorder = setColor(colors, 191);
     rightProgressBorder = setLightColor(color, 88);
