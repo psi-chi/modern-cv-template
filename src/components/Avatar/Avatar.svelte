@@ -1,4 +1,6 @@
 <script>
+  export let color = "#ffffff";
+
   let avatar, fileinput;
 
   const onFileSelected = (e) => {
@@ -17,8 +19,14 @@
     fileinput.click();
   }}
 >
-  <div class="image-border" style="margin-left: -25px" />
-  <div class="image-border" style="margin-left: 25px" />
+  <div
+    class="image-border"
+    style="margin-left: -25px; border: 3px solid {color}; box-shadow: 0 0 5px {color}"
+  />
+  <div
+    class="image-border"
+    style="margin-left: 25px; border: 3px solid {color}; box-shadow: 0 0 5px {color}"
+  />
 
   {#if avatar}
     <img class="avatar" src={avatar} alt="" />
@@ -57,8 +65,6 @@
     grid-row: 1;
     grid-column: 1;
     transform: rotate(45deg);
-    border: 3px solid #fff;
-    box-shadow: 0 0 5px #fff;
     cursor: pointer;
   }
 </style>

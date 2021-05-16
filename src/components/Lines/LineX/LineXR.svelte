@@ -3,7 +3,7 @@
 
 <div class="line-x">
   <div class="line" />
-  <div class="progress-line" />
+  <div class="progress" />
 </div>
 
 <style>
@@ -24,13 +24,13 @@
     cursor: pointer;
   }
 
-  .progress-line {
+  .progress {
     grid-row: 1;
     grid-column: 1;
     height: 1px;
-    border-top: 1px solid #404040;
-    background-color: #000;
-    border-bottom: 1px solid #404040;
+    border-top: 1px solid var(--right-progress-border);
+    background-color: var(--progress-background);
+    border-bottom: 1px solid var(--right-progress-border);
     max-width: 25px;
   }
 </style>

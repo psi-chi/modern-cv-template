@@ -48,13 +48,13 @@
   <h2>
     SKILLS
     <i
-      class="fas fa-plus{statei1}"
+      class="icon fas fa-plus{statei1}"
       on:mouseenter={() => setState(1, "enter")}
       on:mouseleave={() => setState(1, "leave")}
       on:click={addElement}
     />
     <i
-      class="fas fa-minus{statei2}"
+      class="icon fas fa-minus{statei2}"
       on:mouseenter={() => setState(2, "enter")}
       on:mouseleave={() => setState(2, "leave")}
       on:click={removeElement}
@@ -70,18 +70,12 @@
 
 <style>
   h2 {
-    color: #fff;
     text-shadow: 0 0 5px #000;
   }
 
-  i {
-    color: #fff;
-    text-shadow: 0 0 3px #fff;
-  }
-
   p {
-    color: #000;
-    background: #fff;
+    color: var(--left-skills-color);
+    background: var(--left-skills-background);
     font-weight: bold;
     margin: 0 0 5px 5px;
     padding: 5px;

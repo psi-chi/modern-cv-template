@@ -37,13 +37,13 @@
 <div contenteditable={bool} class="interests">
   <h2>
     INTERESTS <i
-      class="fas fa-plus{statei1}"
+      class="icon fas fa-plus{statei1}"
       on:mouseenter={() => setState(1, "enter")}
       on:mouseleave={() => setState(1, "leave")}
       on:click={addElement}
     />
     <i
-      class="fas fa-minus{statei2}"
+      class="icon fas fa-minus{statei2}"
       on:mouseenter={() => setState(2, "enter")}
       on:mouseleave={() => setState(2, "leave")}
       on:click={removeElement}

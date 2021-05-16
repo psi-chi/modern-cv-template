@@ -22,7 +22,13 @@
 
 <div class="container">
   {#if image}
-    <img src={image} alt="" />
+    <img
+      src={image}
+      alt=""
+      on:click={() => {
+        fileinput.click();
+      }}
+    />
   {:else}
     <img
       alt=""

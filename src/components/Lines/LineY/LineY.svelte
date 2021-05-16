@@ -16,10 +16,10 @@
   }
 
   .circle {
-    border: 2px solid #c0c0c0;
+    border: 2px solid var(--circle-border);
     height: 10px;
     width: 10px;
-    background-color: #000;
+    background-color: var(--circle-color);
     border-radius: 50%;
     cursor: pointer;
   }

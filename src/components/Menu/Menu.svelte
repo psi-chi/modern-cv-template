@@ -14,7 +14,20 @@
     positions,
     skillsl,
     customl,
-    customr;
+    customr,
+    colorBool,
+    color,
+    leftHeading,
+    rightHeading,
+    avatarColor,
+    leftProgressBorder,
+    rightProgressBorder,
+    iconColor,
+    circleColor,
+    circleBorder,
+    leftSkillsColor,
+    leftSkillsBackground,
+    rightSkillsBackground;
 
   const setState = (classname) => {
     if (classname == "avatar") {
@@ -50,6 +63,142 @@
     } else if (classname == "customr") {
       customr = !customr;
     }
+  };
+
+  const setColor = (colors, num) => {
+    let colorArray = [0, 0, 0];
+
+    for (let i = 0; i < 3; i++) {
+      colorArray[i] =
+        parseInt(colors[i], 16) - num <= 0
+          ? "00"
+          : parseInt(colors[i], 16) - num <= 15
+          ? "0" + (parseInt(colors[i], 16) - num).toString(16)
+          : (parseInt(colors[i], 16) - num).toString(16);
+    }
+
+    colorArray = "#" + colorArray.join("");
+    return colorArray;
+  };
+
+  const setLightColor = (H, num) => {
+    let r = 0,
+      g = 0,
+      b = 0;
+    if (H.length == 4) {
+      r = "0x" + H[1] + H[1];
+      g = "0x" + H[2] + H[2];
+      b = "0x" + H[3] + H[3];
+    } else if (H.length == 7) {
+      r = "0x" + H[1] + H[2];
+      g = "0x" + H[3] + H[4];
+      b = "0x" + H[5] + H[6];
+    }
+
+    r /= 255;
+    g /= 255;
+    b /= 255;
+    let cmin = Math.min(r, g, b),
+      cmax = Math.max(r, g, b),
+      delta = cmax - cmin,
+      h = 0,
+      s = 0,
+      l = 0;
+
+    if (delta == 0) h = 0;
+    else if (cmax == r) h = ((g - b) / delta) % 6;
+    else if (cmax == g) h = (b - r) / delta + 2;
+    else h = (r - g) / delta + 4;
+
+    h = Math.round(h * 60);
+
+    if (h < 0) h += 360;
+
+    l = (cmax + cmin) / 2;
+    s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+    s = +(s * 100).toFixed(1);
+    l = +(l * 100).toFixed(1);
+
+    l = num;
+
+    s /= 100;
+    l /= 100;
+
+    let c = (1 - Math.abs(2 * l - 1)) * s,
+      x = c * (1 - Math.abs(((h / 60) % 2) - 1)),
+      m = l - c / 2,
+      r2 = 0,
+      g2 = 0,
+      b2 = 0;
+
+    if (0 <= h && h < 60) {
+      r2 = c;
+      g2 = x;
+      b2 = 0;
+    } else if (60 <= h && h < 120) {
+      r2 = x;
+      g2 = c;
+      b2 = 0;
+    } else if (120 <= h && h < 180) {
+      r2 = 0;
+      g2 = c;
+      b2 = x;
+    } else if (180 <= h && h < 240) {
+      r2 = 0;
+      g2 = x;
+      b2 = c;
+    } else if (240 <= h && h < 300) {
+      r2 = x;
+      g2 = 0;
+      b2 = c;
+    } else if (300 <= h && h < 360) {
+      r2 = c;
+      g2 = 0;
+      b2 = x;
+    }
+
+    r2 = Math.round((r2 + m) * 255).toString(16);
+    g2 = Math.round((g2 + m) * 255).toString(16);
+    b2 = Math.round((b2 + m) * 255).toString(16);
+
+    if (r2.length == 1) r2 = "0" + r2;
+    if (g2.length == 1) g2 = "0" + g2;
+    if (b2.length == 1) b2 = "0" + b2;
+
+    return "#" + r2 + g2 + b2;
+  };
+
+  const setTheme = () => {
+    let temp = color.replace("#", "");
+    let colors = [temp.slice(0, 2), temp.slice(2, 4), temp.slice(4, 6)];
+
+    leftHeading = color;
+    rightHeading = setColor(colors, 31);
+    avatarColor = color;
+    leftProgressBorder = setColor(colors, 191);
+    rightProgressBorder = setLightColor(color, 88);
+    iconColor = color;
+    circleColor = color;
+    circleBorder = setLightColor(color, 88);
+    leftSkillsColor = "#fff";
+    leftSkillsBackground = color;
+    rightSkillsBackground = color;
+    colorBool = true;
+  };
+
+  const setDefaultTheme = () => {
+    leftHeading = "#fff";
+    rightHeading = "#000";
+    avatarColor = "#fff";
+    leftProgressBorder = "#c0c0c0";
+    rightProgressBorder = "#404040";
+    iconColor = "#fff";
+    circleColor = "#000";
+    circleBorder = "#c0c0c0";
+    leftSkillsColor = "#000";
+    leftSkillsBackground = "#fff";
+    rightSkillsBackground = "#000";
+    colorBool = false;
   };
 </script>
 
@@ -176,12 +325,52 @@
       <p>CUSTOM (RIGHT)</p>
     </div>
   </div>
+
+  <div class="heading">
+    <h2>CHANGE THEME</h2>
+    <div class="toggler">
+      <span
+        class="color"
+        on:click={() => {
+          setState("color");
+          setTheme;
+        }}
+      >
+        <i class="far" class:fa-star={colorBool == false} on:click={setTheme} />
+        <i
+          class="fas"
+          class:fa-star={colorBool == true}
+          on:click={setDefaultTheme}
+        />
+      </span>
+      <input type="color" bind:value={color} on:input={setTheme} />
+    </div>
+  </div>
 </div>
 
 <style>
   h2 {
-    color: #ffffff;
-    text-shadow: 0 0 5px #ffffff;
+    color: #fff;
+    text-shadow: 0 0 5px #fff;
+  }
+
+  input {
+    border-radius: 5px;
+    background: #fff;
+    height: 25px;
+    width: 25px;
+    padding: 1px;
+    cursor: pointer;
+    margin-left: 5px;
+    grid-column: 2;
+  }
+
+  input:hover {
+    background: #ddd;
+  }
+
+  input:active {
+    background: #888;
   }
 
   .menu {
@@ -192,8 +381,8 @@
 
     text-transform: uppercase;
     font-size: 14px;
-    color: #ffffff;
-    background: linear-gradient(#202020, #000000);
+    color: #fff;
+    background: linear-gradient(#202020, #000);
     box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
     border-radius: 10px;
   }
@@ -213,8 +402,8 @@
 
   .toggler > span > i {
     grid-row: 1;
-    color: #ffffff;
-    text-shadow: 0 0 5px #ffffff;
+    color: #fff;
+    text-shadow: 0 0 5px #fff;
     place-self: center;
     margin: 0;
   }

@@ -59,13 +59,12 @@
 
 <style>
   h2 {
-    color: #000;
-    text-shadow: 0 0 5px #aaa;
+    text-shadow: 0 0 3px #aaa;
   }
 
   i {
     color: #000;
-    text-shadow: 0 0 5px #aaa;
+    text-shadow: 0 0 3px #aaa;
   }
 
   @media print {

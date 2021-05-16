@@ -70,8 +70,7 @@
 
 <style>
   h2 {
-    color: #000;
-    text-shadow: 0 0 5px #aaa;
+    text-shadow: 0 0 3px #aaa;
   }
 
   i {
@@ -81,7 +80,7 @@
 
   p {
     color: #fff;
-    background: #000;
+    background: var(--right-skills-background);
     font-weight: bold;
     margin: 0 0 5px 5px;
     padding: 5px;
