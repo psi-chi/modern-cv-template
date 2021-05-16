@@ -32,7 +32,20 @@
     positions = false,
     skillsl = false,
     customl = false,
-    customr = false;
+    customr = false,
+    colorBool = false,
+    color = "#fff",
+    leftHeading = "#fff",
+    rightHeading = "#000",
+    avatarColor = color,
+    leftProgressBorder = "#c0c0c0",
+    rightProgressBorder = "#404040",
+    iconColor = "#fff",
+    circleColor = "#000",
+    circleBorder = "#c0c0c0",
+    leftSkillsColor = "#000",
+    leftSkillsBackground = "#fff",
+    rightSkillsBackground = "#000";
 </script>
 
 <main>
@@ -54,12 +67,32 @@
       bind:skillsl
       bind:customl
       bind:customr
+      bind:colorBool
+      bind:avatarColor
+      bind:leftHeading
+      bind:rightHeading
+      bind:leftProgressBorder
+      bind:rightProgressBorder
+      bind:iconColor
+      bind:circleColor
+      bind:circleBorder
+      bind:leftSkillsColor
+      bind:leftSkillsBackground
+      bind:rightSkillsBackground
+      {color}
     />
   </div>
-  <div class="main" size="A4">
-    <div class="left">
+  <div
+    class="main"
+    size="A4"
+    style="--icon-color: {iconColor}; --circle-color: {circleColor}; --circle-border: {circleBorder}; --left-skills-color: {leftSkillsColor}; --left-skills-background: {leftSkillsBackground}; --right-skills-background: {rightSkillsBackground}"
+  >
+    <div
+      class="left"
+      style="--heading-color: {leftHeading}; --progress-background: {leftHeading}; --left-progress-border: {leftProgressBorder}"
+    >
       {#if avatar}
-        <Avatar />
+        <Avatar color={avatarColor} />
       {/if}
       {#if aboutme}
         <About />
@@ -80,7 +113,10 @@
         <Social />
       {/if}
     </div>
-    <div class="right">
+    <div
+      class="right"
+      style="--heading-color: {rightHeading}; --progress-background: {rightHeading}; --right-progress-border: {rightProgressBorder}"
+    >
       {#if name}
         <Name />
       {/if}
@@ -113,13 +149,28 @@
 </main>
 
 <style>
+  :global(h2) {
+    margin: 0;
+    color: var(--heading-color);
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  :global(i) {
+    color: var(--icon-color);
+    text-shadow: 0 0 5px #000;
+  }
+
   main {
     display: grid;
     grid-template-columns: 223px 21cm auto;
   }
+
   .menubar {
     grid-row: 1;
   }
+
   .main {
     display: grid;
     grid-column: 2;
