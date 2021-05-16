@@ -162,6 +162,10 @@
     text-shadow: 0 0 5px #000;
   }
 
+  :global(a:hover) {
+    color: var(--icon-color);
+  }
+
   main {
     display: grid;
     grid-template-columns: 223px 21cm auto;
