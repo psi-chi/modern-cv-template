@@ -32,7 +32,7 @@
   {:else}
     <img
       alt=""
-      src="../images/university.jpg"
+      src="/images/university.jpg"
       on:click={() => {
         fileinput.click();
       }}
