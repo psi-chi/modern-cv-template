@@ -31,7 +31,7 @@
   {#if avatar}
     <img class="avatar" src={avatar} alt="" />
   {:else}
-    <img class="avatar" src="../images/avatar.jpg" alt="" />
+    <img class="avatar" src="/images/avatar.jpg" alt="" />
   {/if}
   <input
     style="display:none"

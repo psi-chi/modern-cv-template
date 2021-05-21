@@ -33,7 +33,7 @@ Basic editing can be done by using the <a href="https://psi-chi.github.io/modern
 <br />
 <br />:white_square_button: **ADDING IMAGES:** Click the image > Upload the file (png, jpg or jpeg).
 <br />
-<br />:white_square_button: **EDITING ICONS:** Visit <a href="https://psi-chi.github.io/modern-cv-template/">Font Awesome</a> > Search for an icon > Copy the class of i tag > Go back to the <a href="https://psi-chi.github.io/modern-cv-template/">website</a> > Click the icon > Paste the class in the input field > Click the icon again.
+<br />:white_square_button: **EDITING ICONS:** Visit <a href="https://fontawesome.com/icons">Font Awesome</a> > Search for an icon > Copy the class of i tag > Go back to the <a href="https://psi-chi.github.io/modern-cv-template/">website</a> > Click the icon > Paste the class in the input field > Click the icon again.
 <br />
 <br />:white_square_button: **EDITING HYPERLINKS:** Click the underlined text > Paste the url in the input field > Click the underlined text again.
 <br />
