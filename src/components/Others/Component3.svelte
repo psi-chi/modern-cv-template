@@ -42,8 +42,8 @@
     Lorem Ipsum
     <br /><em>Lorem Ipsum | Jan 20XX - Present</em>
     {#if credential}
-      <br /><a href={url} target="_blank" on:click={setState}>loremipsumdolor</a
-      >
+      <br />
+      <a href={url} target="_blank" on:click={setState}>loremipsumdolor</a>
       <input bind:value={url} class="url" style="display: {state}" />
     {/if}
   </p>

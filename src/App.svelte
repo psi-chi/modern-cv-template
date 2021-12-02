@@ -200,6 +200,7 @@
     padding: 30px 35px 30px 40px;
     display: grid;
     caret-color: #fff;
+    overflow-x: hidden;
     overflow-y: scroll;
   }
 
@@ -208,6 +209,7 @@
     padding: 40px 35px 30px 40px;
     grid-column: 2;
     caret-color: #000;
+    overflow-x: hidden;
     overflow-y: scroll;
   }
 

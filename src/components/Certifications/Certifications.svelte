@@ -53,7 +53,7 @@
   </h2>
   <LineX />
   <div class="container">
-    {#each array as item, index}
+    {#each array as item}
       <div class="position">
         <svelte:component this={item} credential />
       </div>
